@@ -1,9 +1,11 @@
 <h1>Blogs</h1>
 
+<h2>There is {{ blogs.count }} blog{{ blogs.count|pluralize}} on this page</h2>
+
 {% for blog in blogs %}
 
 <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
-<p>{{ blog.description }}</p>
-<h5>{{ blog.dates }}</h5>
+<p>{{ blog.description|safe|truncatechars:100 }}</p>
+<h5>{{ blog.dates|date:'M d Y'|upper }}</h5>
 
 {% endfor %}
